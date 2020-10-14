@@ -1,13 +1,14 @@
 import React, {Component} from 'react';
 
 import AuxC from '../../hoc/AuxC';
+import BurgerPreview from '../../components/burgerPreview/BurgerPreview'
 
 class Burger extends Component {
     render () {
         return (
             <AuxC>
-                <div>Grafic of burger</div>
-                <div>Controls</div>
+                <BurgerPreview/>
+                <div>controls</div>
             </AuxC>
         );
     }
