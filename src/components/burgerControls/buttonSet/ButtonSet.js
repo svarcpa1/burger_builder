@@ -5,8 +5,13 @@ const buttonSet = (props) => (
 
     <div className={classes.ButtonSet}>
         <div className={classes.Label}>{props.ingredientLabel}:</div>
-        <button className={classes.Less} onClick={props.added}>+</button>
-        <button className={classes.More} onClick={props.removed}>-</button>
+        <button 
+            className={classes.More} 
+            onClick={props.added}>+</button>
+        <button 
+            className={classes.Less} 
+            onClick={props.removed}
+            disabled={props.disabled}>-</button>
     </div>
 );
 

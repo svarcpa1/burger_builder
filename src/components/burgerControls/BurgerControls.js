@@ -12,6 +12,7 @@ const burgerControls = (props) => (
                 ingredientLabel={ing}
                 added={() => props.ingredientAdded(ing)}
                 removed={() => props.ingredientRemoved(ing)}
+                disabled={props.disabled[ing]}
             />
         ))}
     </div>

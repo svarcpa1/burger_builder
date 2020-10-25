@@ -58,11 +58,20 @@ class Burger extends Component {
                 ingredients: updatedIngredients, 
                 totalPrice: newTotalPrice
             });
+        } else {
+            return;
         }
-
     }
     
     render () {   
+        // creation of: {salad: true, meat: false...}
+        let disabledInfo = {
+            ...this.state.ingredients
+        }
+        for (let key in disabledInfo) {
+            disabledInfo[key] = disabledInfo[key] <= 0;
+        }
+        
         return (
             <AuxC>
                 <BurgerPreview ingredients={this.state.ingredients}/>
@@ -70,6 +79,7 @@ class Burger extends Component {
                     ingredientsList={Object.keys(this.state.ingredients)}
                     ingredientAdded={this.addIngredientHandler}
                     ingredientRemoved={this.removeIngredientHandler}
+                    disabled={disabledInfo}
                 />
             </AuxC>
         );
