@@ -12,6 +12,7 @@ const buttonSet = (props) => (
             className={classes.Less} 
             onClick={props.removed}
             disabled={props.disabled}>-</button>
+        <div> (+/- {props.ingredientPrice} CZK)</div>
     </div>
 );
 
