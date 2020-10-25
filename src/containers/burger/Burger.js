@@ -3,6 +3,8 @@ import React, {Component} from 'react';
 import AuxC from '../../hoc/AuxC';
 import BurgerPreview from '../../components/burgerPreview/BurgerPreview';
 import BurgerControls from '../../components/burgerControls/BurgerControls';
+import Modal from '../../components/UI/Modal/Modal';
+import OrderSummary from '../../components/orderSummary/OrderSummary';
 
 const INGREDIENT_PRICES = {
     Salad: 15,
@@ -25,7 +27,8 @@ class Burger extends Component {
             Meat:0
         },
         totalPrice: 80,
-        purchaseable: false
+        purchaseable: false,
+        orderClicked: false
     }
 
     updatePurchaseableState(ingredients) {
@@ -35,6 +38,18 @@ class Burger extends Component {
         
         this.setState({
             purchaseable: sum > 0
+        })
+    }
+
+    orderClickedHandler = () => {
+        this.setState({
+            orderClicked: true
+        })
+    }
+
+    modalClose = () => {
+        this.setState({
+            orderClicked: false
         })
     }
 
@@ -89,6 +104,11 @@ class Burger extends Component {
         
         return (
             <AuxC>
+                <Modal 
+                    show={this.state.orderClicked} 
+                    modalClose={this.modalClose}>
+                    <OrderSummary ingredients={this.state.ingredients}/>
+                </Modal>
                 <BurgerPreview ingredients={this.state.ingredients}/>
                 <BurgerControls 
                     ingredientsList={Object.keys(this.state.ingredients)}
@@ -98,6 +118,7 @@ class Burger extends Component {
                     disabled={disabledInfo}
                     totalPrice={this.state.totalPrice}
                     purchaseable={this.state.purchaseable}
+                    orderClicked={this.orderClickedHandler}
                 />
             </AuxC>
         );
