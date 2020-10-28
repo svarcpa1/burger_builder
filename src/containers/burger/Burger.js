@@ -53,6 +53,10 @@ class Burger extends Component {
         })
     }
 
+    orderContinueHandler = () => {
+        alert("Continue...");
+    }
+
     addIngredientHandler = (type) => {
         //immutable way of editing state
         const updatedIngredients = {
@@ -107,7 +111,10 @@ class Burger extends Component {
                 <Modal 
                     show={this.state.orderClicked} 
                     modalClose={this.modalClose}>
-                    <OrderSummary ingredients={this.state.ingredients}/>
+                    <OrderSummary 
+                        ingredients={this.state.ingredients} 
+                        cancelHandler={this.modalClose} 
+                        continueHandler={this.orderContinueHandler}/>
                 </Modal>
                 <BurgerPreview ingredients={this.state.ingredients}/>
                 <BurgerControls 
